@@ -1,0 +1,1 @@
+(()=>{"use strict";function t(t,e,i,o){this.topic=t,this.description=e,this.duedate=i,this.priority=o,this.complete="false"}const e=document.getElementById("button"),i=[];let o=0;e.addEventListener("click",(()=>{const e=new t(prompt("topic"),prompt("description"),prompt("date"),prompt("priority"));i.push(e),console.log(i),o+=1}))})();
