@@ -1,6 +1,7 @@
 import {maketodo} from "/src/functions/maketodo.js";
 import {changingcompletion} from "/src/functions/changingcompletion.js";
 import {changingpriority} from "/src/functions/changingpriority.js";
+import {toggleonoff} from "/src/functions/toggleonoff.js";
 
 const button = document.getElementById("button");
 const left = document.getElementById("left");
@@ -29,6 +30,7 @@ buttonleft.addEventListener("click",()=>{
             let alreadyactive = document.querySelector(".active");
             if(alreadyactive != null){
                 alreadyactive.classList.remove("active");
+                toggleonoff(alreadyactive);
             }
             clone.classList.add("active");
         })
