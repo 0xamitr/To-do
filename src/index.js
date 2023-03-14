@@ -12,10 +12,16 @@ button.addEventListener("click", ()=>{
     const description = prompt("description");
     const date = prompt("date");
     const priority = prompt("priority");
-
+    const deletel = document.createElement("button");
     const object1 = new maketodo(topic, description, date, priority);
+    const object1div = document.createElement("div");
     let currentproject = document.querySelector(".active");
-    currentproject.append(object1);
+    object1div.append(object1);
+    object1div.append(deletel);
+    currentproject.append(object1div);
+    deletel.addEventListener("click", ()=>{
+        object1div.remove();        
+    })
 })
 buttonleft.addEventListener("click",()=>{
     const tempclass = document.createElement("div");
@@ -24,13 +30,23 @@ buttonleft.addEventListener("click",()=>{
     if(name!= null)
     {
         tempclass.innerText = name;
+        const deletel = document.createElement("button");
+        tempclass.append(deletel);
         left.append(tempclass);
         right.append(clone);
+        deletel.addEventListener("click", ()=>{
+            if(clone != null){
+                clone.remove();
+                tempclass.remove();
+                const defaultp = document.querySelector(".default");
+                defaultp.classList.add("active");
+            }
+        }) 
         tempclass.addEventListener("click", ()=> {
             let alreadyactive = document.querySelector(".active");
             if(alreadyactive != null){
                 alreadyactive.classList.remove("active");
-                toggleonoff(alreadyactive);
+                toggleonoff(clone, alreadyactive);
             }
             clone.classList.add("active");
         })

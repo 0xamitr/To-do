@@ -1,11 +1,8 @@
 
-function toggleonoff(domelement){
-    if(domelement.style.diplay == "none"){
-        domelement.style.diplay == "block";
-    }
-    else{
+function toggleonoff(clone, domelement){
+    if (clone != domelement){
+        clone.style.display = "block";
         domelement.style.display = "none";
     }
 }
-
 export {toggleonoff};
