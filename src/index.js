@@ -6,7 +6,11 @@ import {toggleonoff} from "/src/functions/toggleonoff.js";
 const button = document.getElementById("button");
 const left = document.getElementById("left");
 const right = document.getElementById("right");
-const buttonleft = document.getElementById("buttonleft");
+const buttonleft = document.getElementById("buttonleft");                
+const defaultl = document.createElement("div")
+defaultl.setAttribute("class", "active");
+right.append(defaultl);
+
 button.addEventListener("click", ()=>{
     const topic = prompt("topic");
     const description = prompt("description");
@@ -36,10 +40,9 @@ buttonleft.addEventListener("click",()=>{
         right.append(clone);
         deletel.addEventListener("click", ()=>{
             if(clone != null){
+                defaultl.setAttribute("class", "active");
                 clone.remove();
                 tempclass.remove();
-                const defaultp = document.querySelector(".default");
-                defaultp.classList.add("active");
             }
         }) 
         tempclass.addEventListener("click", ()=> {
