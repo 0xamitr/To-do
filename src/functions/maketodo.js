@@ -1,8 +1,8 @@
 
-function maketodo(topic, description, duedate, priority){
+function maketodo(topic, description, date, priority){
     this.topic = topic;
     this.description = description;
-    this.duedate = duedate;
+    this.date = date;
     this.priority = priority;
     this.complete = "false";
 }
