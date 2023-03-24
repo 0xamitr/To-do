@@ -64,7 +64,7 @@ button.addEventListener("click", ()=>{
     const prioritys = document.createElement("p");
     prioritys.textContent = object1.priority;
     object1div.append(prioritys);
-
+    deletel.innerHTML = "&times;";
     object1div.append(deletel);
     currentproject.append(object1div);
     deletel.addEventListener("click", ()=>{
