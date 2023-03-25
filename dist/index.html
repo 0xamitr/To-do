@@ -8,12 +8,31 @@
     <link rel="stylesheet" href="style.css">
     <script src="main.js" defer></script>
 </head>
-<body>
+<body id="body">
     <div id="left">
         <button id="buttonleft">New Project</button>
     </div>
     <div id="right">
         <button id="button">New Task</button>
+    </div>
+    <div id="form" style="display: none">
+        <label>
+            Name
+            <input id="name" type="text">
+        </label>
+        <label>
+            Description
+            <input id="desc" type="text">
+        </label>
+        <label>
+            Priority
+            <input id="priority" type="checkbox">
+        </label>
+        <label>
+            Date
+            <input id="date" type="date">
+        </label>
+        <input id="submit" type="submit">
     </div>
 </body>
 </html>

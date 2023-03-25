@@ -2,6 +2,9 @@ import {maketodo} from "/src/functions/maketodo.js";
 import {changingcompletion} from "/src/functions/changingcompletion.js";
 import {changingpriority} from "/src/functions/changingpriority.js";
 import {toggleonoff} from "/src/functions/toggleonoff.js";
+import {form} from "/src/functions/form.js";
+import {submit} from "/src/functions/submit.js";
+import { format } from "date-fns";
 
 const button = document.getElementById("button");
 const left = document.getElementById("left");
@@ -40,36 +43,52 @@ defaultl.addEventListener("click", ()=> {
 
 //new task
 button.addEventListener("click", ()=>{
-    const topic = prompt("topic");
-    const description = prompt("description");
-    const date = prompt("date");
-    const priority = prompt("priority");
-    const deletel = document.createElement("button");
-    const object1 = new maketodo(topic, description, date, priority);
-    const object1div = document.createElement("div");
-    let currentproject = document.querySelector(".active");
-    console.log(object1)
-    const topics = document.createElement("p");
-    topics.textContent = object1.topic;
-    object1div.append(topics);
-
-    const descriptions = document.createElement("p");
-    descriptions.textContent = object1.description;
-    object1div.append(descriptions);
-
-    const dates = document.createElement("p");
-    dates.textContent = object1.date;
-    object1div.append(dates);
-
-    const prioritys = document.createElement("p");
-    prioritys.textContent = object1.priority;
-    object1div.append(prioritys);
-    deletel.innerHTML = "&times;";
-    object1div.append(deletel);
-    currentproject.append(object1div);
-    deletel.addEventListener("click", ()=>{
-        object1div.remove();        
+    form();
+    const submitvar = document.getElementById("submit");
+    submitvar.addEventListener("click", ()=>{
+        const list = submit()
+    });
+    
+    const inputlist = document.querySelectorAll("input");
+    inputlist.forEach(function(e){
+        e.addEventListener("keypress", function(event){
+            if (event.key == "Enter"){
+                event.preventDefault;
+                const list = submit();
+                console.log(typeof(list));
+            }
+        })
     })
+    // const topic = prompt("topic");
+    // const description = prompt("description");
+    // const date = prompt("date");
+    // const priority = prompt("priority");
+    // const deletel = document.createElement("button");
+    // const object1 = new maketodo(topic, description, date, priority);
+    // const object1div = document.createElement("div");
+    // let currentproject = document.querySelector(".active");
+    // console.log(object1)
+    // const topics = document.createElement("p");
+    // topics.textContent = object1.topic;
+    // object1div.append(topics);
+
+    // const descriptions = document.createElement("p");
+    // descriptions.textContent = object1.description;
+    // object1div.append(descriptions);
+
+    // const dates = document.createElement("p");
+    // dates.textContent = object1.date;
+    // object1div.append(dates);
+
+    // const prioritys = document.createElement("p");
+    // prioritys.textContent = object1.priority;
+    // object1div.append(prioritys);
+    // deletel.innerHTML = "&times;";
+    // object1div.append(deletel);
+    // currentproject.append(object1div);
+    // deletel.addEventListener("click", ()=>{
+    //     object1div.remove();        
+//     })
 })
 
 //new project
@@ -81,7 +100,9 @@ buttonleft.addEventListener("click",()=>{
     if(name.length != 0)
     {
         console.log(name);
-        tempclass.innerText = name;
+        const namep1 = document.createElement("h2");
+        namep1.innerText = name;
+        tempclass.append(namep1);
         const deletel = document.createElement("button");
         const namep = document.createElement("h1");
         namep.innerText = name;

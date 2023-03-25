@@ -64,12 +64,12 @@ button{
 }
 
 #right > div{
-    width: 40%;
+    width: 50%;
 }
 
 #right > button{
     margin-top: 10px;
-    width: 40%;
+    width: 50%;
     border: none;
     border-radius: 5px;
     background-color: white;
@@ -88,4 +88,18 @@ button{
 
 #right > div > div > button:hover{
     cursor: pointer;
+}
+
+#form{
+    background-color: lightgrey;
+    height: 60vh;
+    width: 30vw;
+    position: absolute;
+    top: 15%;
+    left: 30%;
+    border-radius: 10px;
+    border: solid black 2px;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
 }
