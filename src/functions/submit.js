@@ -16,7 +16,8 @@ function submit(){
     document.getElementById("priority").value = "";
     left.setAttribute("style", "filter: blur(0)");
     right.setAttribute("style", "filter: blur(0)");
-    return name, desc, date, priority;
+    const list = [name, desc, date, priority];
+    return list;
 }
 
 export {submit};

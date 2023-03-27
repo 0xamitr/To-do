@@ -103,3 +103,8 @@ button{
     justify-content: space-around;
     align-items: center;
 }
+
+.Default-Projects{
+    display: flex;
+    flex-direction: column;
+}

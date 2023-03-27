@@ -1,31 +1,45 @@
-import {maketodo} from "/src/functions/maketodo.js";
 import {changingcompletion} from "/src/functions/changingcompletion.js";
 import {changingpriority} from "/src/functions/changingpriority.js";
 import {toggleonoff} from "/src/functions/toggleonoff.js";
 import {form} from "/src/functions/form.js";
 import {submit} from "/src/functions/submit.js";
-import { format } from "date-fns";
+import {format} from "date-fns";
+import {taskdom} from "/src/functions/taskdom.js"
 
 const button = document.getElementById("button");
 const left = document.getElementById("left");
 const right = document.getElementById("right");
 const buttonleft = document.getElementById("buttonleft");                
 const defaultl = document.createElement("div");
-const nodel = defaultl.cloneNode(true);
+
+const nodel = document.createElement("div");
 const home = document.createElement("h2");
+const today = document.createElement("h2");
+
 home.innerText = "HOME";
+today.innerText = "TODAY";
+
+const nodetoday = document.createElement("div");
 nodel.setAttribute("class", "active");
 defaultl.setAttribute("class", "Default-Projects");
 defaultl.append(home);
+defaultl.append(today);
 left.insertBefore(defaultl, buttonleft);
 const namep1 = document.createElement("h1");
+const namep2 = document.createElement("h1");
+
 namep1.innerText = "HOME";
+namep2.innerText = "TODAY";
 nodel.append(namep1);
+nodetoday.append(namep2);
+nodetoday.style.display = "none";
 const projecthead = document.createElement("h1");
 projecthead.innerText = "Project";
 left.insertBefore(projecthead, buttonleft);
 right.insertBefore(nodel, button);
-defaultl.addEventListener("click", ()=> {
+right.insertBefore(nodetoday, button);
+
+home.addEventListener("click", ()=> {
     let alreadyactive2 = document.querySelector(".active");
     if (document.getElementById("button").style.display == "none"){
         document.getElementById("button").style.display = "block";
@@ -40,56 +54,42 @@ defaultl.addEventListener("click", ()=> {
     nodel.classList.add("active");
     
 })
+today.addEventListener("click", ()=> {
+    let alreadyactive2 = document.querySelector(".active");
+    if (document.getElementById("button").style.display == "none"){
+        document.getElementById("button").style.display = "block";
+    }
+    if(alreadyactive2 != null){
+        alreadyactive2.classList.remove("active");
+        toggleonoff(nodetoday, alreadyactive2);
+    }
+    else{
+        nodetoday.style.display = "block";
+    }
+    nodetoday.classList.add("active");
+    
+})
 
 //new task
 button.addEventListener("click", ()=>{
     form();
-    const submitvar = document.getElementById("submit");
+});
+
+const submitvar = document.getElementById("submit");
     submitvar.addEventListener("click", ()=>{
-        const list = submit()
-    });
-    
-    const inputlist = document.querySelectorAll("input");
+        const list = submit();
+        taskdom(list[0], list[1], list[2], list[3]);
+});
+const inputlist = document.querySelectorAll("input");
     inputlist.forEach(function(e){
         e.addEventListener("keypress", function(event){
             if (event.key == "Enter"){
                 event.preventDefault;
                 const list = submit();
-                console.log(typeof(list));
-            }
-        })
-    })
-    // const topic = prompt("topic");
-    // const description = prompt("description");
-    // const date = prompt("date");
-    // const priority = prompt("priority");
-    // const deletel = document.createElement("button");
-    // const object1 = new maketodo(topic, description, date, priority);
-    // const object1div = document.createElement("div");
-    // let currentproject = document.querySelector(".active");
-    // console.log(object1)
-    // const topics = document.createElement("p");
-    // topics.textContent = object1.topic;
-    // object1div.append(topics);
-
-    // const descriptions = document.createElement("p");
-    // descriptions.textContent = object1.description;
-    // object1div.append(descriptions);
-
-    // const dates = document.createElement("p");
-    // dates.textContent = object1.date;
-    // object1div.append(dates);
-
-    // const prioritys = document.createElement("p");
-    // prioritys.textContent = object1.priority;
-    // object1div.append(prioritys);
-    // deletel.innerHTML = "&times;";
-    // object1div.append(deletel);
-    // currentproject.append(object1div);
-    // deletel.addEventListener("click", ()=>{
-    //     object1div.remove();        
-//     })
-})
+                taskdom(list[0], list[1], list[2], list[3]);
+            };
+        });
+});
 
 //new project
 buttonleft.addEventListener("click",()=>{
