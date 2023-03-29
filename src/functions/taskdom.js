@@ -1,11 +1,10 @@
 import {maketodo} from "/src/functions/maketodo.js";
 
-function taskdom(zero, one, two, three){
+function taskdom(zero, one, two, three, w){
     const object1 = new maketodo(zero, one, two, three);
         const deletel = document.createElement("button");
         const object1div = document.createElement("div");
         let currentproject = document.querySelector(".active");
-        console.log(object1)
         const topics = document.createElement("p");
         topics.textContent = object1.topic;
         object1div.append(topics);
@@ -15,7 +14,9 @@ function taskdom(zero, one, two, three){
         object1div.append(descriptions);
 
         const dates = document.createElement("p");
-        dates.setAttribute("class", "date");
+        if(w == "0"){
+            dates.setAttribute("class", "date");
+        }
         dates.textContent = object1.date;
         object1div.append(dates);
 
